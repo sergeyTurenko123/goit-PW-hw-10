@@ -1,0 +1,17 @@
+{% extends "authorapp/base.html" %}
+{% load extract_tags %} 
+{% block content %}
+<h1>{{author.fullname}}</h1>
+<p>born date: <b>{{author.born_date}}</b></p>
+<p>born location: <kbd>{{author.born_location}}</kbd></p>
+<p>Description: <b>{{author.description}}</b></p>
+{% if author.done %}
+<p>
+  Status:
+  <ins>Completed</ins>
+</p>
+{% else %}
+<p>Status: <i>Not implemented</i></p>
+{% endif %}
+<p>Tags: <b>{{ author.tags }}</b></p>
+{% endblock %}

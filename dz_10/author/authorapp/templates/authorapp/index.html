@@ -7,7 +7,26 @@
 </head>
 <body>
 <main class="container">
-    <h1>Main page</h1>
+    <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
+        <ul>
+            <li><a href="{% url 'authorapp:author' %}" role="button">Add Author</a></li>
+            <li><a href="{% url 'authorapp:quote' %}" role="button">Add Quotes</a></li>
+        </ul>
+    </nav>
+
+    <!-- {% for a in author %}
+    <ul>
+        <li>
+            {% if not author.done %}
+            <a href="{% url 'authorapp:detail' author.id %}" role="button" class="outline"> {{ author.fullname }} </a>
+            <a href="{% url 'authorapp:delete' author.id %}" role="button" class="contrast"> Delete author </a>
+            {% else %}
+            <a href="{% url 'authorapp:detail' author.id %}" role="button" class="secondary"><s>{{ author.fullname }}</s></a>
+            {% endif %}
+        </li>
+    </ul>
+    {% endfor %} -->
 </main>
 </body>
 </html>
+
