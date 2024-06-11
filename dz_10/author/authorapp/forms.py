@@ -1,4 +1,4 @@
-from django.forms import ModelForm, CharField, TextInput, DateField
+from django.forms import ModelForm, CharField, TextInput
 from .models import Author, Quotes
 
 
@@ -21,5 +21,6 @@ class QuoteForm(ModelForm):
 
     class Meta:
         model = Quotes
-        fields = ['tags', 'author', 'quote']
+        fields = ['tags', 'quote']
         exclude = ['author']
+

@@ -27,7 +27,7 @@ def quote(request):
         if form.is_valid():
             new_note = form.save()
 
-            choice_author = Quotes.objects.filter(name__in=request.POST.getlist('author'))
+            choice_author = Author.objects.filter(name__in=request.POST.getlist('author'))
             for author in choice_author.iterator():
                 new_note.tags.add(author)
 
