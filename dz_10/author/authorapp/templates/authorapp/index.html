@@ -13,12 +13,11 @@
             <li><a href="{% url 'authorapp:quotes' %}" role="button">Add Quotes</a></li>
         </ul>
     </nav>
-    {% for quote in quotes %}
+    {% for author in authors %}
     <ul>
         <li>
-            <a href="{% url 'authorapp:detail_quotes' quotes.id %}" role="button" class="outline">fullname</a>
-            <!-- <a href="{% url 'authorapp:detail' quotes.id %}" role="button" class="outline"> {{ author.tags }} </a>
-            <a href="{% url 'authorapp:delete' author.id %}" role="button" class="contrast"> Delete author </a> -->
+            <a href="{% url 'authorapp:detail' autor.id %}" role="button" class="outline">{{ quote.fullname }}</a>
+            <a href="{% url 'authorapp:delete' autor.id %}" role="button" class="contrast"> Delete author </a>
         </li>
     </ul>
     {% endfor %}
