@@ -7,7 +7,8 @@ urlpatterns = [
     path('', views.main, name='main'),
     path('author/', views.author, name='author'),
     path('quotes/', views.quotes, name='quotes'),
-    path('detail/<int:quote_id>', views.detail, name='detail'),
+    path('detail_quote/<int:quote_id>', views.detail_quote, name='detail_quote'),
+    path('detail_author/<int:quote_id>', views.detail_author, name='detail_author'),
     path('done/<int:quote_id>', views.set_done, name='set_done'),
-    path('delete/<int:quote_id>', views.delete_quote, name='delete'),
+    path('delete_author/<int:author_id>', views.delete_author, name='delete_author'),
 ]

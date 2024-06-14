@@ -1,3 +1,4 @@
+{% load extract_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,11 +14,12 @@
             <li><a href="{% url 'authorapp:quotes' %}" role="button">Add Quotes</a></li>
         </ul>
     </nav>
-    {% for author in authors %}
+    {% for quote in quotes %}
     <ul>
         <li>
-            <a href="{% url 'authorapp:detail' autor.id %}" role="button" class="outline">{{ quote.fullname }}</a>
-            <a href="{% url 'authorapp:delete' autor.id %}" role="button" class="contrast"> Delete author </a>
+            <a href="{% url 'authorapp:detail_author' quote.id %}" role="button" class="outline">{{quote.author|author}}</a>
+            <a href="{% url 'authorapp:detail_quote' quote.id %}" role="button" class="outline">{{ quote.quote }}</a>
+            <a href="{% url 'authorapp:delete_author' quote.id %}" role="button" class="contrast"> Delete author </a>
         </li>
     </ul>
     {% endfor %}

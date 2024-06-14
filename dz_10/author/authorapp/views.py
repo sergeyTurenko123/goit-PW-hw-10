@@ -4,8 +4,8 @@ from .models import Author, Quotes
 
 # Create your views here.
 def main(request):
-    authors = Author.objects.all()
-    return render(request, 'authorapp/index.html', {"authors": authors})
+    quotes = Quotes.objects.all()
+    return render(request, 'authorapp/index.html', {"quotes": quotes})
 
 
 def author(request):
@@ -38,14 +38,18 @@ def quotes(request):
     return render(request, 'authorapp/quotes.html', {"authors": authors, 'form': QuoteForm()})
 
 
-def detail(request, quote_id):
+def detail_quote(request, quote_id):
     quote = get_object_or_404(Quotes, pk=quote_id)
-    return render(request, 'authorapp/detail.html', {"quote": quote})
+    return render(request, 'authorapp/detail_quote.html', {"quote": quote})
+
+def detail_author(request, quote_id):
+    author = get_object_or_404(Quotes, pk=quote_id)
+    return render(request, 'authorapp/detail_author.html', {"fullname": author})
 
 def set_done(request, quote_id):
     Quotes.objects.filter(pk=quote_id).update(done=True)
     return redirect(to='authorapp:main')
 
-def delete_quote(request, quote_id):
-    Quotes.objects.get(pk=quote_id).delete()
+def delete_author(request, author_id):
+    Author.objects.get(pk=author_id).delete()
     return redirect(to='authorapp:main')
