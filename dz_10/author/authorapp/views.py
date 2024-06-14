@@ -4,8 +4,8 @@ from .models import Author, Quotes
 
 # Create your views here.
 def main(request):
-    notes = Author.objects.all()
-    return render(request, 'authorapp/index.html', {"author": author})
+    quotes = Quotes.objects.all()
+    return render(request, 'authorapp/index.html', {"quotes": quotes})
 
 
 def author(request):
@@ -19,34 +19,25 @@ def author(request):
 
     return render(request, 'authorapp/author.html', {'form': AuthorForm()})
 
-def quote(request):
-    fullname = Author.objects.all()
+def quotes(request):
+    fullname =  Author.objects.all()
 
     if request.method == 'POST':
         form = QuoteForm(request.POST)
         if form.is_valid():
             new_note = form.save()
 
-            choice_author = Author.objects.filter(name__in=request.POST.getlist('author'))
+            choice_author = Author.objects.filter(fullname__in=request.POST.getlist('fullname'))
             for author in choice_author.iterator():
-                new_note.tags.add(author)
+                new_note.fullname.add(author)
 
             return redirect(to='authorapp:main')
         else:
-            return render(request, 'authorapp/quote.html', {"author": fullname, 'form': form})
+            return render(request, 'authorapp/quotes.html', {"authors": fullname, 'form': form})
 
-    return render(request, 'authorapp/quote.html', {"author": fullname, 'form': QuoteForm()})
+    return render(request, 'authorapp/quotes.html', {"authors": fullname, 'form': QuoteForm()})
 
 
-def detail(request, author_id):
-    author = get_object_or_404(Author, pk=author_id)
-    return render(request, 'authorapp/detail.html', {"author": author})
-
-# def set_done(request, author_id):
-#     Author.objects.filter(pk=author_id).update(done=True)
-#     return redirect(to='authorapp:main')
-
-# def delete_note(request, author_id):
-#     Author.objects.get(pk=author_id).delete()
-#     return redirect(to='authorapp:main')
-
+def detail(request, quotes_id):
+    quote = get_object_or_404(Quotes, pk=quotes_id)
+    return render(request, 'authorapp/detail.html', {"quote": quote})

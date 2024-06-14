@@ -10,22 +10,18 @@
     <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
         <ul>
             <li><a href="{% url 'authorapp:author' %}" role="button">Add Author</a></li>
-            <li><a href="{% url 'authorapp:quote' %}" role="button">Add Quotes</a></li>
+            <li><a href="{% url 'authorapp:quotes' %}" role="button">Add Quotes</a></li>
         </ul>
     </nav>
-
-    <!-- {% for a in author %}
+    {% for quote in quotes %}
     <ul>
         <li>
-            {% if not author.done %}
-            <a href="{% url 'authorapp:detail' author.id %}" role="button" class="outline"> {{ author.fullname }} </a>
-            <a href="{% url 'authorapp:delete' author.id %}" role="button" class="contrast"> Delete author </a>
-            {% else %}
-            <a href="{% url 'authorapp:detail' author.id %}" role="button" class="secondary"><s>{{ author.fullname }}</s></a>
-            {% endif %}
+            <a href="{% url 'authorapp:detail_quotes' quotes.id %}" role="button" class="outline">fullname</a>
+            <!-- <a href="{% url 'authorapp:detail' quotes.id %}" role="button" class="outline"> {{ author.tags }} </a>
+            <a href="{% url 'authorapp:delete' author.id %}" role="button" class="contrast"> Delete author </a> -->
         </li>
     </ul>
-    {% endfor %} -->
+    {% endfor %}
 </main>
 </body>
 </html>
