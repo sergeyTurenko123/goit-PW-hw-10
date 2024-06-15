@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/main.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'quoteapp/style.css' %}">
+    <title>homwork</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row header-box">
+            <div class="col-md-8">
+                <h1>
+                    <a href="/" style="text-decoration: none">Quotes to Scrape</a>
+                </h1>
+            </div>
+            <div class="col-md-4">
+                <p>
+                    <a href="/login" class="btn btn-primary">SignUp</a>
+                    <a href="/login" class="btn btn-primary">Login</a>
+                    <a href="/login" class="btn btn-primary">logoout</a>
+                </p>
+            </div>
+        </div>
+    </div>
+ {% block content%} {% endblock%}
+</body>
+</html>
