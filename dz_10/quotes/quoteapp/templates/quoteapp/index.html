@@ -22,12 +22,14 @@
         <nav>
             <ul class="pager">
                 <li class="previous">
-                    <a class="{% if not quotes.has_previous %} disabled {% endif%}" href="{% if quotes.has_previous %} {% url 'quotes:root_paginate' quotes.next_page_number %} {% else %} {% endif%}">
+                    <a class="{% if not quoteapp.has_previous %} disabled {% endif%}"
+                        href="{% if quoteapp.has_previous %} {% url 'quoteapp:root_paginate' quoteapp.previous_page_number %} {% else %} # {% endif%}">
                         <span aria-hidden="true">←</span> Previous
                     </a>
                 </li>
                 <li class="next">
-                    <a class="{% if not quotes.has_previous %} disabled {% endif%}" href="{% if quotes.has_previous %} {% url 'quotes:root_paginate' quotes.next_page_number %} {% else %} {% endif%}">
+                    <a class="{% if not quoteapp.has_previous %} disabled {% endif%}" 
+                        href="{% if quoteapp.has_previous %} {% url 'quoteapp:root_paginate' quoteapp.next_page_number %} {% else %} # {% endif%}">
                         Next <span aria-hidden="true">→</span>
                     </a>
                 </li>
