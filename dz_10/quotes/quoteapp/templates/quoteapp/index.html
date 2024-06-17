@@ -1,6 +1,13 @@
 {% extends 'quoteapp/base.html' %}
 {% load extract_tags %}
 {% block content %}
+<p>
+    {% if user.is_authenticated %}
+    <a href="{% url 'quoteapp:quote' %}" role="button" class="btn btn-primary">Add Quote</a>
+    <a href="{% url 'quoteapp:author' %}" role="button" class="btn btn-primary">Add Author</a>
+    <a href="{% url 'quoteapp:tag' %}" role="button" class="btn btn-primary">Add Tag</a>
+    {% endif %}
+</p>
 <div class="row">
     <div class="col-md-8">
         {% for quote in quotes %}
@@ -9,14 +16,17 @@
                 {{quote.quote}}
             </span>
             <span>by <small class="author" itemprop="author">{{quote.author.fullname}}</small>
-                <a href="/author/{{quote.author.fullname}}">(about)</a>
+                <a href="{% url 'quoteapp:detail_author' quote.author_id %}">(about)</a>
                 </span>
             <div class="tags">
                 Tags:
                 {% for tag in quote.tags|tags %}
-                <a class="tag" href="/tag/{{tag}}">{{tag.name}}</a>
+                <a class="tag" href="{}">{{tag.name}}</a>
                 {% endfor%}
             </div>
+            {% if user.is_admin %}
+            <a href="{% url 'quoteapp:delete_quote' quote.id %}" role="button" class="btn btn-dark"> Delete </a>
+            {% endif %}
         </div>
         {% endfor%}
         <nav>
