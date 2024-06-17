@@ -1,15 +1,12 @@
 from django import template
-from ..utils import get_mongodb
+from ..models import Author
 from bson.objectid import ObjectId
 
 register = template.Library()
 
 
-def author(id_):
-    db = get_mongodb()
-    author = db.authors.find_one({'_id': ObjectId(id_)})
-    return author['fullname']
+def tags(tags_all):
+    tags = [name for name in tags_all.all()]
+    return tags
 
-
-register.filter('author', author)
-
+register.filter('tags', tags)

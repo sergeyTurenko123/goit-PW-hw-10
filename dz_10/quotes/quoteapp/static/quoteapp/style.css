@@ -28,19 +28,32 @@
 .pager {
     font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+.pager li {
+    display: inline;
+}
 .pager {
     padding-left: 0;
     margin: 22px 0;
     list-style: none;
     text-align: center;
 }
-.pager li {
-    display: inline;
+.pager .previous>a, .pager .previous>span {
+    float: left;
 }
-.pager a:hover {
-    border-color: transparent;
-    color: #fff;
+.pager li>a, .pager li>span {
+    display: inline-block;
+    padding: 5px 14px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 15px;
 }
 .disabled{
-    color: #333333;
+    color: #000;
+}
+.alert-error, .errorlist {
+    color: crimson;
+}
+
+.alert-success {
+    color: green;
 }
