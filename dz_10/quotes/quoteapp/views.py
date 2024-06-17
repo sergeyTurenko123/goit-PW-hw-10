@@ -69,11 +69,13 @@ def delete_quote(request, quote_id):
     Quote.objects.get(pk=quote_id).delete()
     return redirect(to='quoteapp:main')
 
-# def detail_tag(request, tag):
-#     for quote in Quote.objects.all():
-#         tags = [name for name in quote.tags.all()]
-#         if tag in tags.name:
-#             return render(request, 'quoteapp/detail_tag.html', {"quote": quote})
+def detail_tag(request, tag):
+    quotes = Quote.objects.all()
+    for quote in quotes:
+        for tags in quote.tags:
+        # tags = [quote.name for quote in quotes.tags]
+            if tag in tags.name:
+                return render(request, 'quoteapp/detail_tag.html', {"quote": quotes})
                 
 
 
