@@ -21,7 +21,7 @@
             <div class="tags">
                 Tags:
                 {% for tag in quote.tags|tags %}
-                <a class="tag" href="{%  %}">{{tag.name}}</a>
+                <a class="tag" href="{}">{{tag.name}}</a>
                 {% endfor%}
             </div>
             {% if user.is_admin %}
