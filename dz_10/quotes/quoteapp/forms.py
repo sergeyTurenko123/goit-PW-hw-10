@@ -1,4 +1,4 @@
-from django.forms import ModelForm, CharField, TextInput, DateTimeField
+from django.forms import ModelForm, CharField, TextInput
 from .models import Tag, Author, Quote
 
 class TagForm(ModelForm):
