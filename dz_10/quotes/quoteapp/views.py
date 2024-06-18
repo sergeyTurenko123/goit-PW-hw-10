@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
-from .models import Quote, Author, Tag
+from .models import Quote, Tag, Author
 from .forms import TagForm, QuoteForm, AuthorForm
 from django.contrib.auth.decorators import login_required
 
@@ -69,13 +69,13 @@ def delete_quote(request, quote_id):
     Quote.objects.get(pk=quote_id).delete()
     return redirect(to='quoteapp:main')
 
-def detail_tag(request, tag):
-    quotes = Quote.objects.all()
-    for quote in quotes:
-        for tags in quote.tags:
-        # tags = [quote.name for quote in quotes.tags]
-            if tag in tags.name:
-                return render(request, 'quoteapp/detail_tag.html', {"quote": quotes})
+# def detail_tag(request, tag):
+#     quotes = Quote.objects.all()
+#     for quote in quotes:
+#         if tag in quote.tags.all():
+#             return render(request, 'quoteapp/detail_tag.html', {"quote": quotes})
+#         else:
+#             pass
                 
 
 

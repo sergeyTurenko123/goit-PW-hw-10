@@ -21,7 +21,7 @@
             <div class="tags">
                 Tags:
                 {% for tag in quote.tags|tags %}
-                <a class="tag" href="{% url 'quoteapp:detail_tag' tag.name %}">{{tag.name}}</a>
+                <a class="tag" href="{%  %}">{{tag.name}}</a>
                 {% endfor%}
             </div>
             {% if user.is_admin %}
