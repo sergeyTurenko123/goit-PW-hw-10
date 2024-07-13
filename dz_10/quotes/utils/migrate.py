@@ -36,3 +36,5 @@ for quote in quotes:
         )
     for tag in tags:
         q.tags.add(tag)
+
+# py -m utils.migrate.py
