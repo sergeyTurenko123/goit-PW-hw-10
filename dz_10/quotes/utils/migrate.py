@@ -34,7 +34,7 @@ for quote in quotes:
             quote=quote['quote'],
             author=a
         )
-    for tag in tags:
-        q.tags.add(tag)
+        for tag in tags:
+            q.tags.add(tag)
 
 # py -m utils.migrate.py
