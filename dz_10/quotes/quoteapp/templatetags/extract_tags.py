@@ -1,6 +1,5 @@
 from django import template
 from ..models import Quote
-from bson.objectid import ObjectId
 
 register = template.Library()
 
