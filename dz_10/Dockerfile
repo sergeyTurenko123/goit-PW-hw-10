@@ -3,12 +3,13 @@
 FROM python:3.10
 
 # Встановимо змінну середовища
-ENV APP_HOME /code
+ENV APP_HOME /app
 
 # Встановимо робочу директорію всередині контейнера
 WORKDIR $APP_HOME
 
-COPY pyproject.toml $APP_HOME/pyproject.toml
+
+COPY /pyproject.toml $APP_HOME/pyproject.toml
 
 # Встановимо залежності всередині контейнера
 RUN pip install poetry

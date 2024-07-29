@@ -11,8 +11,8 @@ console_command = '/code/manage.py shell'
 
 [deploy]
   release_command = 'python manage.py migrate --noinput'
-  SECRET_KEY='django-insecure-7*_%c$4j2q+qdqt-dsedlukzt!-lc3u6qt8(o0f19h99nn)mip
-'
+  SECRET_KEY='django-insecure-7*_%c$4j2q+qdqt-dsedlukzt!-lc3u6qt8(o0f19h99nn)mip'
+
 [env]
   PORT = '8000'
 
