@@ -1,4 +1,5 @@
-fly.toml
-.git/
-*.sqlite3
-**/.env
+**/__pycache__
+.idea
+
+/quotes/.env
+

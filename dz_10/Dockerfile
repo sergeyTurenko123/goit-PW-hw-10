@@ -1,25 +1,26 @@
-# Docker-команда FROM вказує базовий образ контейнера
-# Наш базовий образ - це Linux з попередньо встановленим python-3.10
-FROM python:3.10
+ARG PYTHON_VERSION=3.12-slim-bullseye
 
-# Встановимо змінну середовища
-ENV APP_HOME /app
+FROM python:${PYTHON_VERSION}
 
-# Встановимо робочу директорію всередині контейнера
-WORKDIR $APP_HOME
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
+# install psycopg2 dependencies.
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY /pyproject.toml $APP_HOME/pyproject.toml
+RUN mkdir -p /code
 
-# Встановимо залежності всередині контейнера
+WORKDIR /code
+
 RUN pip install poetry
-RUN poetry config virtualenvs.create false && poetry install --only main
+COPY pyproject.toml poetry.lock /code/
+RUN poetry config virtualenvs.create false
+RUN poetry install --only main --no-root --no-interaction
+COPY . /code
 
-# Скопіюємо інші файли в робочу директорію контейнера
-COPY . .
-
-# Позначимо порт, де працює програма всередині контейнера
 EXPOSE 8000
 
-# Запустимо нашу програму всередині контейнера
-CMD ["python", "quotes/manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["gunicorn", "--bind", ":8000", "--workers", "2", "quotes.wsgi"]

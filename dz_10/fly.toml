@@ -1,20 +1,31 @@
-# fly.toml app configuration file generated for dz-10 on 2024-07-28T23:41:42+03:00
+# fly.toml app configuration file generated for dz-10 on 2024-07-31T20:33:30+03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = 'dz-10'
-primary_region = 'ams'
-console_command = '/code/manage.py shell'
+primary_region = 'waw'
+console_command = '/quotes/manage.py shell'
 
 [build]
 
 [deploy]
-  release_command = 'python manage.py migrate --noinput'
-  SECRET_KEY='django-insecure-7*_%c$4j2q+qdqt-dsedlukzt!-lc3u6qt8(o0f19h99nn)mip'
+  release_command = 'python quotes/manage.py migrate --noinput'
 
 [env]
-  PORT = '8000'
+  SECRET_KEY='django-insecure-7*_%c$4j2q+qdqt-dsedlukzt!-lc3u6qt8(o0f19h99nn)mip'
+
+  DATABASE_NAME='postgres'
+  DATABASE_USER='postgres'
+  DATABASE_PASSWORD='567234'
+  DATABASE_HOST='127.0.0.1'
+  DATABASE_PORT='5432'
+
+  EMAIL_HOST='smtp.meta.ua'
+  EMAIL_PORT='465'
+  EMAIL_HOST_USER='robota_test@meta.ua'
+  EMAIL_HOST_PASSWORD='31122014Polina'
+
 
 [http_service]
   internal_port = 8000
@@ -25,7 +36,7 @@ console_command = '/code/manage.py shell'
   processes = ['app']
 
 [[vm]]
-  memory = '1gb'
+  memory = '512mb'
   cpu_kind = 'shared'
   cpus = 1
 
