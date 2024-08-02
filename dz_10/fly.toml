@@ -1,32 +1,21 @@
-# fly.toml app configuration file generated for dz-10 on 2024-07-31T20:33:30+03:00
+# fly.toml app configuration file generated for dz-10-quotesapp on 2024-08-02T20:15:02+03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'dz-10'
+app = 'dz-10-quotesapp'
 primary_region = 'waw'
 console_command = '/quotes/manage.py shell'
 
 [build]
 
 [deploy]
-  release_command = 'python quotes/manage.py migrate --noinput'
-
-[env]
+  release_command = 'python quotes/manage.py makemigrations'
   SECRET_KEY='django-insecure-7*_%c$4j2q+qdqt-dsedlukzt!-lc3u6qt8(o0f19h99nn)mip'
-
-  DATABASE_NAME='postgres'
-  DATABASE_USER='postgres'
-  DATABASE_PASSWORD='567234'
-  DATABASE_HOST='127.0.0.1'
-  DATABASE_PORT='5432'
-
-  EMAIL_HOST='smtp.meta.ua'
-  EMAIL_PORT='465'
-  EMAIL_HOST_USER='robota_test@meta.ua'
-  EMAIL_HOST_PASSWORD='31122014Polina'
-
-
+  
+[env]
+  PORT = '8000'
+    
 [http_service]
   internal_port = 8000
   force_https = true
@@ -36,7 +25,7 @@ console_command = '/quotes/manage.py shell'
   processes = ['app']
 
 [[vm]]
-  memory = '512mb'
+  memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
 

@@ -9,9 +9,9 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-import dj_database_url
 from pathlib import Path
 import environ
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -32,10 +32,8 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-LLOWED_HOSTS = ["*", "dz-10.fly.dev"]
-CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000", "http://localhost:8000", "http://localhost",
-                        "https://dz-10.fly.dev"]
-
+APP_NAME = os.environ.get("FLY_APP_NAME")
+ALLOWED_HOST = [f"{APP_NAME}.fly.dev"]
 
 # Application definition
 
@@ -85,6 +83,7 @@ WSGI_APPLICATION = "quotes.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
+    # 'default':dj_database_url.config(default=os.getenv("DATABASE_URL"))
     'default':
       {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
