@@ -6,8 +6,10 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.views.decorators.csrf import csrf_exempt
 
 @login_required
+@csrf_exempt
 def profile(request):
     if request.method == 'POST':
         profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
@@ -19,6 +21,7 @@ def profile(request):
     profile_form = ProfileForm(instance=request.user.profile)
     return render(request, 'users/profile.html', {'profile_form': profile_form})
 
+@csrf_exempt
 def signupuser(request):
     if request.user.is_authenticated:
         return redirect(to='quoteapp:main')
@@ -33,6 +36,7 @@ def signupuser(request):
 
     return render(request, 'users/signup.html', context={"form": RegisterForm()})
 
+@csrf_exempt
 def loginuser(request):
     if request.user.is_authenticated:
         return redirect(to='quoteapp:main')
